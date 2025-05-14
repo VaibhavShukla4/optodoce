@@ -10,6 +10,7 @@ import AIGirl from "@/assets/ai_girl.webp";
 import Robot from "@/assets/robot.webp";
 import Big_Border from "@/assets/big_border.svg";
 import Border from "@/assets/border.svg";
+
 export default function Section_1() {
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +23,21 @@ export default function Section_1() {
   }, []);
 
   return (
-    <div className=" bg-black text-white relative">
+    <div className="bg-black text-white relative">
+      <Image
+        src={Border.src}
+        height={Border.height}
+        width={Border.width}
+        alt="Border menu icon"
+        className="absolute top-[-10vw] left-[-35vw] -translate-x-[-50%] w-full max-[1280px]:hidden"
+      />
+      <Image
+        src={Big_Border.src}
+        height={Big_Border.height}
+        width={Big_Border.width}
+        alt="Big_Border menu icon"
+        className="absolute top-0 w-[1800px] max-[1280px]:hidden"
+      />
       {/* Header */}
       <header className="flex justify-between items-center p-4">
         <Image
@@ -30,34 +45,34 @@ export default function Section_1() {
           height={Humberg.height}
           width={Humberg.width}
           alt="Humberg menu icon"
-          className="h-8 w-8"
+          className="h-8 w-8 max-[425px]:h-6 max-[425px]:w-6"
         />
-        <div className="text-4xl font-bold flex items-center">
+        <div className="text-4xl font-bold flex items-center max-[667px]:text-xl">
           <Image
             src={Logo.src}
             height={Logo.height}
             width={Logo.width}
             alt="Logo menu icon"
-            className="h-12 w-12"
-          />{" "}
+            className="h-12 w-12 max-[667px]:h-8 max-[667px]:w-8 max-[425px]:h-6 max-[425px]:w-6"
+          />
           Opt
           <Image
             src={Subtract.src}
             height={Subtract.height}
             width={Subtract.width}
             alt="Subtract menu icon"
-            className="h-8 w-8"
-          />{" "}
+            className="h-8 w-8 max-[667px]:h-6 max-[667px]:w-6 max-[425px]:h-4 max-[425px]:w-4"
+          />
           doce
         </div>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 max-[425px]:space-x-1">
           <button
-            className={`${karla_500.className} px-4 py-2 text-[#010102] bg-white rounded-full`}
+            className={`${karla_500.className} px-4 py-2 max-[425px]:py-2 max-[425px]:px-4 text-[#010102] max-[425px]:text-[12px] max-[425px]:rounded-4xl bg-white rounded-full`}
           >
             Login
           </button>
           <button
-            className={`${karla_500.className} px-4 py-2 bg-gradient-to-r from-[#6A41FB] to-[#F49957] rounded-full`}
+            className={`${karla_500.className} px-4 py-2 bg-gradient-to-r from-[#6A41FB] to-[#F49957] rounded-full max-[425px]:px-4 max-[425px]:py-2 max-[425px]:text-[12px] max-[425px]:rounded-4xl`}
           >
             Sign Up
           </button>
@@ -70,8 +85,8 @@ export default function Section_1() {
           height={AIGirl.height}
           width={AIGirl.width}
           alt="AIGirl menu icon"
-          className="absolute top-0 left-[-4%] -translate-x-[-50%] -translate-y-[-50%]"
-        />{" "}
+          className="absolute top-0 left-[-4%] -translate-x-[-50%] -translate-y-[-50%] max-[1280px]:hidden"
+        />
         {loading ? (
           <>
             {/* Skeleton for Headline */}
@@ -94,35 +109,32 @@ export default function Section_1() {
           </>
         ) : (
           <>
-            {/* <h1
-              className={`${plus_Jakarta_Sans_500.className} text-5xl font-bold mb-4`}
-            >
-              Best AI Content Platform <br /> Image Generator
-            </h1> */}
             <Image
               src={Title.src}
               height={Title.height}
               width={Title.width}
               alt="Title menu icon"
               className=""
-            />{" "}
-            <p className={`${karla_400.className} w-[45%] text-white my-8`}>
+            />
+            <p
+              className={`${karla_400.className} w-[45%] max-[991px]:w-[80%] text-white my-8`}
+            >
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout.
             </p>
             {/* Input and Button */}
-            <div className="flex items-center w-full px-[10px] py-[10px] max-w-2xl  mb-4 bg-[#343435] rounded-full">
+            <div className="flex items-center w-full px-[10px] py-[10px] max-w-2xl max-[1280px]:max-w-lg max-[425px]:max-w-lg mb-4 bg-[#343435] rounded-full">
               <input
                 type="text"
                 placeholder="An Astronaut riding a horse on mars, hd"
-                className={`${karla_500.className} flex-1 p-3 rounded-l-full text-white placeholder-gray-400 focus:outline-none`}
+                className={`${karla_500.className} flex-1 p-3 rounded-l-full text-white placeholder-gray-400 focus:outline-none truncate`}
               />
-              <button className="px-6 py-3 bg-gradient-to-r from-[#6A41FB] to-[#F49957] rounded-full ">
+              <button className="px-6 py-3 bg-gradient-to-r from-[#6A41FB] to-[#F49957] rounded-full max-[425px]:px-2 max-[425px]:text-[12px]">
                 Generate Now
               </button>
             </div>
             {/* Tags */}
-            <div className="flex items-center space-x-4">
+            <div className="flex flex-wrap gap-y-2 items-center space-x-4 max-[667px]:space-x-2">
               <span
                 className={`${plus_Jakarta_Sans_500.className} text-white text-[18px]`}
               >
@@ -156,23 +168,9 @@ export default function Section_1() {
           height={Robot.height}
           width={Robot.width}
           alt="Robot menu icon"
-          className="absolute bottom-[18%]  right-[12%] -translate-x-[-50%] -translate-y-[-40%] "
-        />{" "}
-        <Image
-          src={Border.src}
-          height={Border.height}
-          width={Border.width}
-          alt="Border menu icon"
-          className="absolute top-[-90%]  left-[-15%] -translate-x-[-50%] -translate-y-[-40%] "
-        />{" "}
+          className="absolute bottom-[18%] right-[12%] -translate-x-[-50%] -translate-y-[-40%] max-[1280px]:hidden"
+        />
       </main>
-      <Image
-        src={Big_Border.src}
-        height={Big_Border.height}
-        width={Big_Border.width}
-        alt="Big_Border menu icon"
-        className="absolute top-0 w-[1800px] "
-      />{" "}
     </div>
   );
 }

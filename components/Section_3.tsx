@@ -6,12 +6,7 @@ import SmallGirl from "@/assets/small_girl.webp";
 import SweetGirl from "@/assets/sweet_girl.webp";
 import Star from "@/assets/Star.svg";
 import Image from "next/image";
-import {
-  karla_400,
-  karla_500,
-  karla_700,
-  plus_Jakarta_Sans_600
-} from "@/contant";
+import { karla_400, karla_500, plus_Jakarta_Sans_600 } from "@/contant";
 
 export default function Section_2() {
   const [loading, setLoading] = useState(true);
@@ -19,7 +14,7 @@ export default function Section_2() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 

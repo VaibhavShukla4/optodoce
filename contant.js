@@ -58,4 +58,3 @@ export const nunito_Sans_900 = Nunito_Sans({
   weight: "900",
   subsets: ["latin"]
 });
-// Plus Jakarta Sans

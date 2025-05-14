@@ -13,40 +13,13 @@ export default function Section_2() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="bg-black text-white px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12">
+    <div className="bg-black text-white px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-12 mt-[50px]">
       {/* Tags */}
-      <div className="flex justify-center gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8 lg:mb-10">
-        {loading ? (
-          <>
-            <div className="h-8 w-16 sm:w-20 lg:w-24 bg-gray-700 rounded-full animate-pulse"></div>
-            <div className="h-8 w-16 sm:w-20 lg:w-24 bg-gray-700 rounded-full animate-pulse"></div>
-            <div className="h-8 w-16 sm:w-20 lg:w-24 bg-gray-700 rounded-full animate-pulse"></div>
-          </>
-        ) : (
-          <>
-            <span
-              className={`${karla_500.className} px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm lg:text-base bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-200`}
-            >
-              Creative
-            </span>
-            <span
-              className={`${karla_500.className} px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm lg:text-base bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-200`}
-            >
-              Space
-            </span>
-            <span
-              className={`${karla_500.className} px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm lg:text-base bg-gray-700 rounded-full hover:bg-gray-600 transition-colors duration-200`}
-            >
-              Fantasy
-            </span>
-          </>
-        )}
-      </div>
 
       {/* Main Content */}
       <div className="max-w-4xl mx-auto">
