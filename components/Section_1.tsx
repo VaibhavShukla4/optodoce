@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Humberg from "@/assets/humber.svg";
 import Logo from "@/assets/logo.svg";
 import Subtract from "@/assets/subtract.svg";
@@ -11,35 +11,192 @@ import Robot from "@/assets/robot.webp";
 import Big_Border from "@/assets/big_border.svg";
 import Border from "@/assets/border.svg";
 
+import { useState } from "react";
+
 export default function Section_1() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const mainRef = useRef(null);
+  const borderRef = useRef(null);
+  const aiGirlRef = useRef(null);
+  const robotRef = useRef(null);
+  const titleRef = useRef(null);
+  const subheadingRef = useRef(null);
+  const inputContainerRef = useRef(null);
+  const tagsRef = useRef(null);
 
   useEffect(() => {
-    // Simulate a loading delay of 2 seconds
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Function to add animation class with delay
+            interface AnimateWithDelay {
+              (
+                element: HTMLElement | null,
+                className: string,
+                delay: number
+              ): void;
+            }
+
+            const animateWithDelay: AnimateWithDelay = (
+              element,
+              className,
+              delay
+            ) => {
+              if (element) {
+                setTimeout(() => {
+                  element.classList.add(className);
+                }, delay);
+              }
+            };
+
+            // Animate elements
+            animateWithDelay(headerRef.current, "animate-header", 0);
+            animateWithDelay(mainRef.current, "animate-main", 200);
+            animateWithDelay(borderRef.current, "animate-image", 200);
+            animateWithDelay(aiGirlRef.current, "animate-image", 400);
+            animateWithDelay(robotRef.current, "animate-image", 600);
+            animateWithDelay(titleRef.current, "animate-child-1", 800);
+            animateWithDelay(subheadingRef.current, "animate-child-2", 1000);
+            animateWithDelay(
+              inputContainerRef.current,
+              "animate-child-3",
+              1200
+            );
+            animateWithDelay(tagsRef.current, "animate-child-3", 1200);
+
+            // Stop observing after animations are triggered
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1 // Trigger when 10% of the section is visible
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
 
   return (
-    <div className="bg-black text-white relative">
-      <Image
-        src={Border.src}
-        height={Border.height}
-        width={Border.width}
-        alt="Border menu icon"
-        className="absolute top-[-10vw] left-[-35vw] -translate-x-[-50%] w-full max-[1280px]:hidden"
-      />
-      <Image
-        src={Big_Border.src}
-        height={Big_Border.height}
-        width={Big_Border.width}
-        alt="Big_Border menu icon"
-        className="absolute top-0 w-[1800px] max-[1280px]:hidden"
-      />
+    <div ref={sectionRef} className="bg-black text-white relative">
+      {/* Inline CSS for animations */}
+      <style jsx>{`
+        /* Fade-in animation */
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        /* Slide-in from top animation */
+        @keyframes slideInFromTop {
+          from {
+            transform: translateY(-50px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        /* Slide-in from bottom animation */
+        @keyframes slideInFromBottom {
+          from {
+            transform: translateY(50px);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        /* Scale-in animation for images */
+        @keyframes scaleIn {
+          from {
+            transform: scale(0.8);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+
+        /* Animation classes */
+        .animate-header {
+          animation: slideInFromTop 0.8s ease-out forwards;
+        }
+
+        .animate-main {
+          animation: slideInFromBottom 0.8s ease-out forwards;
+        }
+
+        .animate-child-1 {
+          animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .animate-child-2 {
+          animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .animate-child-3 {
+          animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .animate-image {
+          animation: scaleIn 1s ease-out forwards;
+        }
+
+        /* Ensure elements are initially hidden */
+        [ref="headerRef"],
+        [ref="mainRef"],
+        [ref="borderRef"],
+        [ref="aiGirlRef"],
+        [ref="robotRef"],
+        [ref="titleRef"],
+        [ref="subheadingRef"],
+        [ref="inputContainerRef"],
+        [ref="tagsRef"] {
+          opacity: 0;
+        }
+      `}</style>
+
+      {/* Background Images */}
+      <div ref={borderRef}>
+        <Image
+          src={Border.src}
+          height={Border.height}
+          width={Border.width}
+          alt="Border menu icon"
+          className="absolute top-[-10vw] left-[-35vw] -translate-x-[-50%] w-full max-[1280px]:hidden"
+        />
+        <Image
+          src={Big_Border.src}
+          height={Big_Border.height}
+          width={Big_Border.width}
+          alt="Big_Border menu icon"
+          className="absolute top-0 w-[1800px] max-[1280px]:hidden"
+        />
+      </div>
+
       {/* Header */}
-      <header className="flex justify-between items-center p-4">
+      <header ref={headerRef} className="flex justify-between items-center p-4">
         <Image
           src={Humberg.src}
           height={Humberg.height}
@@ -78,9 +235,14 @@ export default function Section_1() {
           </button>
         </div>
       </header>
+
       {/* Main Section */}
-      <main className="relative flex flex-col items-center justify-center text-center mt-20 z-10">
+      <main
+        ref={mainRef}
+        className="relative flex flex-col items-center justify-center text-center mt-20 z-10"
+      >
         <Image
+          ref={aiGirlRef}
           src={AIGirl.src}
           height={AIGirl.height}
           width={AIGirl.width}
@@ -110,31 +272,40 @@ export default function Section_1() {
         ) : (
           <>
             <Image
+              ref={titleRef}
               src={Title.src}
               height={Title.height}
               width={Title.width}
               alt="Title menu icon"
-              className=""
             />
             <p
+              ref={subheadingRef}
               className={`${karla_400.className} w-[45%] max-[991px]:w-[80%] text-white my-8`}
             >
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout.
             </p>
             {/* Input and Button */}
-            <div className="flex items-center w-full px-[10px] py-[10px] max-w-2xl max-[1280px]:max-w-lg max-[425px]:max-w-lg mb-4 bg-[#343435] rounded-full">
+            <div
+              ref={inputContainerRef}
+              className={`flex items-center w-full px-[10px] py-[10px] max-w-2xl max-[1280px]:max-w-lg max-[425px]:max-w-lg mb-4 bg-[#343435] rounded-full`}
+            >
               <input
                 type="text"
                 placeholder="An Astronaut riding a horse on mars, hd"
                 className={`${karla_500.className} flex-1 p-3 rounded-l-full text-white placeholder-gray-400 focus:outline-none truncate`}
               />
-              <button className="px-6 py-3 bg-gradient-to-r from-[#6A41FB] to-[#F49957] rounded-full max-[425px]:px-2 max-[425px]:text-[12px]">
+              <button
+                className={`${karla_500.className} px-6 py-3 bg-gradient-to-r from-[#6A41FB] to-[#F49957] rounded-full max-[425px]:px-2 max-[425px]:text-[12px]`}
+              >
                 Generate Now
               </button>
             </div>
             {/* Tags */}
-            <div className="flex flex-wrap gap-y-2 items-center space-x-4 max-[667px]:space-x-2">
+            <div
+              ref={tagsRef}
+              className="flex flex-wrap gap-y-2 items-center space-x-4 max-[667px]:space-x-2"
+            >
               <span
                 className={`${plus_Jakarta_Sans_500.className} text-white text-[18px]`}
               >
@@ -164,6 +335,7 @@ export default function Section_1() {
           </>
         )}
         <Image
+          ref={robotRef}
           src={Robot.src}
           height={Robot.height}
           width={Robot.width}
